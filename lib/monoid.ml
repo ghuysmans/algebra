@@ -27,6 +27,7 @@ end
 module Tools = struct
   module S (M : S) = struct
     open M
+
     let fastpow a b =
       let rec f a b r =
         if b = 0 then
@@ -43,10 +44,20 @@ module Tools = struct
         failwith "negative exponent"
       else
         f a b id
+
+    let order t =
+      let rec f u n =
+        if equal u id then
+          n
+        else
+          f (t @ u) (n + 1)
+      in
+      f t 0
   end
 
   module I (M : I) = struct
     open M
+
     let fastpow a b =
       let rec f a b r =
         if b = 0 then
@@ -63,5 +74,15 @@ module Tools = struct
         failwith "negative exponent"
       else
         f a b (make ())
+
+    let order t =
+      let id = make () in
+      let rec f u n =
+        if equal u id then
+          n
+        else
+          f (t @ u) (n + 1)
+      in
+      f t 0
   end
 end
