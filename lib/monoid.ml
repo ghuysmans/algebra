@@ -28,7 +28,7 @@ module Tools = struct
   module S (M : S) = struct
     open M
 
-    let fastpow a b =
+    let fastpow a ~b =
       let rec f a b r =
         if b = 0 then
           (* a^0 * r = 1 * r = r *)
@@ -58,7 +58,7 @@ module Tools = struct
   module I (M : I) = struct
     open M
 
-    let fastpow a b =
+    let fastpow a ~b =
       let rec f a b r =
         if b = 0 then
           (* a^0 * r = 1 * r = r *)
