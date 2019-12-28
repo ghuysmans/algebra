@@ -5,6 +5,13 @@ module type S = sig
   val f' : j -> i
 end
 
+module Reverse (S : S) = struct
+  type i = S.j
+  type j = S.i
+  let f = S.f'
+  let f' = S.f
+end
+
 
 module Char (I: sig val from: char end) = struct
   type i = char
