@@ -1,12 +1,13 @@
-opam-version: "1.2"
+opam-version: "2.0"
 name: "algebra"
 version: "0.0.1"
 maintainer: "Guillaume Huysmans <ghuysmans99@gmail.com>"
 authors: "Guillaume Huysmans <ghuysmans99@gmail.com>"
 homepage: "https://github.com/ghuysmans/algebra/"
 bug-reports: "https://github.com/ghuysmans/algebra/issues"
-dev-repo: "https://github.com/ghuysmans/algebra/"
+dev-repo: "git+https://github.com/ghuysmans/algebra/"
 build: [["dune" "build" "-p" name "-j" jobs]]
 depends: [
   "dune" {build}
 ]
+synopsis: "Definitions for common algebraic structures"
