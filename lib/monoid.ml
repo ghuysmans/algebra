@@ -41,7 +41,7 @@ module Tools = struct
           f (a @ a) (b / 2) (r @ a)
       in
       if b < 0 then
-        failwith "negative exponent"
+        raise (Invalid_argument "negative exponent")
       else
         f a b id
 
@@ -71,7 +71,7 @@ module Tools = struct
           f (a @ a) (b / 2) (r @ a)
       in
       if b < 0 then
-        failwith "negative exponent"
+        raise (Invalid_argument "negative exponent")
       else
         f a b (make ())
 

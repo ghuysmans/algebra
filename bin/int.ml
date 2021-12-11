@@ -38,5 +38,5 @@ module Mod (N : sig val n : int end) : S = struct
     if r = 1 then
       if x' < 0 then x' + N.n else x'
     else
-      failwith "non-invertible value"
+      raise (Invalid_argument "non-invertible value")
 end
