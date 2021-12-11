@@ -36,19 +36,8 @@ module Make (E : Element) = struct
     done;
     a
 
-  let of_list dir l =
-    let a =
-      let m, n =
-        match dir with
-        | `Column -> List.length l, 1
-        | `Row -> 1, List.length l
-      in
-      zero m n
-    in
-    l |> List.iteri (fun i x ->
-      match dir with
-      | `Column -> a.(i).(0) <- x
-      | `Row -> a.(0).(i) <- x
-    );
-    a
+  let of_array dir inp =
+    match dir with
+    | `Column -> Array.(init (length inp) (fun i -> [| inp.(i) |]))
+    | `Row -> [| Array.copy inp |]
 end
