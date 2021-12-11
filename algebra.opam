@@ -1,6 +1,6 @@
 opam-version: "2.0"
 name: "algebra"
-version: "0.0.1"
+version: "0.1.0"
 maintainer: "Guillaume Huysmans <ghuysmans99@gmail.com>"
 authors: "Guillaume Huysmans <ghuysmans99@gmail.com>"
 homepage: "https://github.com/ghuysmans/algebra/"
