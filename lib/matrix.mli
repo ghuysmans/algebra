@@ -6,9 +6,16 @@ module type Element = sig
   val ( * ) : t -> t -> t
 end
 
-module Make : functor (E : Element) -> sig
-  include Semigroup.S with type t = E.t array array
+module type S = sig
+  type element
+  include Semigroup.S with type t = element array array
   val zero : int -> int -> t
   val id : int -> int -> t
-  val of_array : [< `Column | `Row] -> E.t array -> t
+  val of_array : [< `Column | `Row] -> element array -> t
 end
+
+module Make : functor (E : Element) -> S with type element := E.t
+
+module I : S with type element := int
+module F : S with type element := float
+module C : S with type element := Complex.t

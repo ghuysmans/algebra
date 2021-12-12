@@ -6,6 +6,14 @@ module type Element = sig
   val ( * ) : t -> t -> t
 end
 
+module type S = sig
+  type element
+  include Semigroup.S with type t = element array array
+  val zero : int -> int -> t
+  val id : int -> int -> t
+  val of_array : [< `Column | `Row] -> element array -> t
+end
+
 module Make (E : Element) = struct
   type t = E.t array array
 
@@ -41,3 +49,28 @@ module Make (E : Element) = struct
     | `Column -> Array.(init (length inp) (fun i -> [| inp.(i) |]))
     | `Row -> [| Array.copy inp |]
 end
+
+module I = Make (struct
+  type t = int
+  let id_add = 0
+  let (+) = (+)
+  let id_prod = 1
+  let ( * ) = ( * )
+end)
+
+module F = Make (struct
+  type t = float
+  let id_add = 0.
+  let (+) = (+.)
+  let id_prod = 1.
+  let ( * ) = ( *. )
+end)
+
+module C = Make (struct
+  open Complex
+  type nonrec t = t
+  let id_add = zero
+  let (+) = add
+  let id_prod = one
+  let ( * ) = mul
+end)
