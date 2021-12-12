@@ -10,7 +10,7 @@ module type S = sig
   type element
   include Semigroup.S with type t = element array array
   val zero : int -> int -> t
-  val id : int -> int -> t
+  val id : int -> t
   val of_array : [< `Column | `Row] -> element array -> t
 end
 
@@ -36,9 +36,8 @@ module Make (E : Element) = struct
   let zero m n =
     Array.make_matrix m n E.id_add
 
-  let id m n =
-    if m <> n then raise (Invalid_argument "no identity for non-square matrices");
-    let a = zero m n in
+  let id n =
+    let a = zero n n in
     for i = 0 to n - 1 do
       a.(i).(i) <- E.id_prod
     done;

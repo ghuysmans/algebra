@@ -10,7 +10,7 @@ module type S = sig
   type element
   include Semigroup.S with type t = element array array
   val zero : int -> int -> t
-  val id : int -> int -> t
+  val id : int -> t
   val of_array : [< `Column | `Row] -> element array -> t
 end
 
